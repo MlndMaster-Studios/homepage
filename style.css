@@ -1,21 +1,21 @@
 /* =========================
-   MINDMASTER STUDIOS HUB THEME
+   MINDMASTER STUDIOS HUB THEME – Unified Style
    ========================= */
 
-/* ===== Base Layout ===== */
+/* ===== Body & General ===== */
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(-45deg, #120020, #1a0040, #2a0060, #120020);
+  background: linear-gradient(-45deg, #100018, #1e0030, #2a0050, #100018);
   background-size: 400% 400%;
-  animation: bgShift 20s ease infinite;
-  font-family: 'Inter', sans-serif;
-  color: #e9e9ff;
+  animation: gradientFlow 20s ease infinite;
+  font-family: "Inter", sans-serif;
+  color: #e8e8ff;
   overflow-x: hidden;
 }
 
-@keyframes bgShift {
+@keyframes gradientFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -35,14 +35,14 @@ h1 {
 }
 
 h1 span {
-  background: linear-gradient(270deg, #a78bfa, #6366f1, #06b6d4);
+  background: linear-gradient(270deg, #8b5cf6, #4f46e5, #0f172a);
   background-size: 600% 600%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textPulse 8s ease infinite;
+  animation: textGradient 8s ease infinite;
 }
 
-@keyframes textPulse {
+@keyframes textGradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -51,7 +51,7 @@ h1 span {
 .tagline {
   margin-top: 0.5rem;
   font-size: 1rem;
-  color: #bdb9ff;
+  color: #c3c1ff;
   opacity: 0.9;
 }
 
@@ -63,19 +63,21 @@ h1 span {
   padding: 2rem 0 3rem;
 }
 
+/* ===== Card Grid ===== */
 .schedule-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.2rem;
   margin-bottom: 1.2rem;
+  align-items: stretch;
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
+  animation: fadeInUp 0.8s forwards;
 }
 
-.schedule-row:nth-child(1) { animation-delay: 0.15s; }
-.schedule-row:nth-child(2) { animation-delay: 0.3s; }
-.schedule-row:nth-child(3) { animation-delay: 0.45s; }
+.schedule-row:nth-child(1) { animation-delay: 0.1s; }
+.schedule-row:nth-child(2) { animation-delay: 0.2s; }
+.schedule-row:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes fadeInUp {
   to {
@@ -84,58 +86,50 @@ h1 span {
   }
 }
 
-/* ===== Card Styling ===== */
+/* ===== Frosted Glass Cards ===== */
 .schedule-card {
   position: relative;
-  background: rgba(25, 30, 55, 0.6);
-  border: 1px solid rgba(150, 120, 255, 0.15);
-  border-radius: 18px;
+  background: rgba(30, 41, 59, 0.55);
+  backdrop-filter: blur(12px) saturate(150%);
+  border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(12px) saturate(160%);
-  transition: all 0.3s ease;
-  cursor: pointer;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease-in-out;
   overflow: hidden;
-}
-
-.schedule-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mouseX, 50%) var(--mouseY, 50%), rgba(139,92,246,0.15), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.schedule-card:hover::before {
-  opacity: 1;
+  cursor: pointer;
+  z-index: 1;
+  will-change: transform, box-shadow, border-color;
+  --mouseX: 0;
+  --mouseY: 0;
 }
 
 .schedule-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: rgba(150,120,255,0.35);
-  box-shadow: 0 6px 22px rgba(139, 92, 246, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(139, 92, 246, 0.15), 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: rgba(139, 92, 246, 0.25);
+  outline: 1px solid rgba(139, 92, 246, 0.2);
+  outline-offset: -2px;
+  transform: translateY(-6px);
 }
 
 .schedule-card h3 {
+  color: #e0d7ff;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(139, 92, 246, 0.15);
   margin-bottom: 0.6rem;
-  font-size: 1.25rem;
-  color: #e5e3ff;
-  text-shadow: 0 0 4px rgba(150,120,255,0.15);
-  transition: color 0.3s ease;
-}
-
-.schedule-card p {
-  color: #c7c5ff;
-  font-size: 0.95rem;
-  opacity: 0.9;
-  line-height: 1.4;
+  transition: all 0.3s ease;
 }
 
 .schedule-card:hover h3 {
-  color: #c4baff;
+  text-shadow: 0 0 6px rgba(139, 92, 246, 0.25);
+}
+
+.schedule-card p {
+  color: #c3c1ff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  opacity: 0.9;
 }
 
 /* ===== Footer ===== */
@@ -149,7 +143,6 @@ h1 span {
   backdrop-filter: blur(10px) saturate(160%);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
-  font-family: "Inter", sans-serif;
   letter-spacing: 0.4px;
 }
 
@@ -158,6 +151,43 @@ h1 span {
   font-weight: 600;
 }
 
+/* ===== Home Button (Universal) ===== */
+.home-btn {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(30, 41, 59, 0.55);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #cfcaff;
+  backdrop-filter: blur(10px) saturate(160%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.home-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.home-btn:hover {
+  color: #fff;
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.25), 0 0 8px rgba(139, 92, 246, 0.3);
+  transform: translateY(-3px);
+}
+
+.home-btn:active {
+  transform: scale(0.96);
+}
 
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar {
@@ -180,7 +210,7 @@ h1 span {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Responsive Adjustments ===== */
+/* ===== Responsive Layout ===== */
 @media (max-width: 640px) {
   h1 { font-size: 2rem; }
   .schedule-row { grid-template-columns: 1fr; }
