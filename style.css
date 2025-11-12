@@ -216,3 +216,11 @@ h1 span {
   .schedule-row { grid-template-columns: 1fr; }
   .hub-container { padding: 1rem; }
 }
+
+h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+h1 a:hover {
+  text-decoration: underline; /* or whatever hover effect you like */
+}
